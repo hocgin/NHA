@@ -1,4 +1,4 @@
-package in.hocg.message.boss.protocol.command.packet;
+package in.hocg.message.boss.message.command.packet;
 
 import lombok.Data;
 
@@ -22,6 +22,5 @@ public abstract class AbstractPacket implements Serializable {
      * @return
      */
     public abstract byte getCommand();
-    
     
 }

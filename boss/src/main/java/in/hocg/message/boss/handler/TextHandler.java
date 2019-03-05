@@ -1,6 +1,6 @@
 package in.hocg.message.boss.handler;
 
-import in.hocg.message.boss.protocol.command.packet.AbstractPacket;
+import in.hocg.message.boss.message.command.packet.AbstractPacket;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;

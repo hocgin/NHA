@@ -1,6 +1,6 @@
 package in.hocg.message.boss.handler;
 
-import in.hocg.message.boss.protocol.command.packet.TestPacket;
+import in.hocg.message.boss.message.command.packet.TestPacket;
 import io.netty.channel.embedded.EmbeddedChannel;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
-package in.hocg.message.boss.protocol.command.packet;
+package in.hocg.message.boss.message.command.packet;
 
-import in.hocg.message.boss.protocol.command.Command;
+import in.hocg.message.boss.message.command.Command;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

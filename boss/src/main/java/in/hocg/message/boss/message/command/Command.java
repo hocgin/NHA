@@ -1,7 +1,7 @@
-package in.hocg.message.boss.protocol.command;
+package in.hocg.message.boss.message.command;
 
-import in.hocg.message.boss.protocol.command.packet.AbstractPacket;
-import in.hocg.message.boss.protocol.command.packet.TestPacket;
+import in.hocg.message.boss.message.command.packet.AbstractPacket;
+import in.hocg.message.boss.message.command.packet.TestPacket;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
