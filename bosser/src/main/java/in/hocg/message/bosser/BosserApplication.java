@@ -1,7 +1,7 @@
 package in.hocg.message.bosser;
 
-import in.hocg.message.bosser.netty.DefaultServer;
-import in.hocg.message.bosser.netty.ioc.InvokerManager;
+import in.hocg.message.netty.DefaultServer;
+import in.hocg.message.netty.ioc.InvokerManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

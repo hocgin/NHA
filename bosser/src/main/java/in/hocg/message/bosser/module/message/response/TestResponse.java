@@ -2,7 +2,7 @@ package in.hocg.message.bosser.module.message.response;
 
 import in.hocg.message.bosser.module.message.MessageConstant;
 import in.hocg.message.bosser.module.message.ModuleConstant;
-import in.hocg.message.bosser.netty.message.packet.AbstractPacket;
+import in.hocg.message.netty.message.packet.AbstractPacket;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
