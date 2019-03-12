@@ -1,8 +1,8 @@
 package in.hocg.message;
 
-import in.hocg.message.bosser.module.message.request.TestRequest;
-import in.hocg.message.netty.initializer.SocketInitializer;
-import in.hocg.message.netty.ioc.InvokerManager;
+import in.hocg.message.body.request.TestRequest;
+import in.hocg.message.bosser.netty.initializer.SocketInitializer;
+import in.hocg.message.bosser.netty.ioc.InvokerManager;
 import io.netty.channel.embedded.EmbeddedChannel;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

@@ -1,10 +1,10 @@
 package in.hocg.message.bosser.module;
 
-import in.hocg.message.bosser.module.message.MessageConstant;
-import in.hocg.message.bosser.module.message.ModuleConstant;
-import in.hocg.message.bosser.module.message.request.TestRequest;
-import in.hocg.message.netty.ioc.Command;
-import in.hocg.message.netty.ioc.Module;
+import in.hocg.message.body.MessageConstant;
+import in.hocg.message.body.ModuleConstant;
+import in.hocg.message.body.request.TestRequest;
+import in.hocg.message.bosser.netty.ioc.Command;
+import in.hocg.message.bosser.netty.ioc.Module;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;

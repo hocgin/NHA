@@ -1,7 +1,7 @@
 package in.hocg.message.bosser.test;
 
-import in.hocg.message.netty.ioc.Command;
-import in.hocg.message.netty.ioc.Module;
+import in.hocg.message.bosser.netty.ioc.Command;
+import in.hocg.message.bosser.netty.ioc.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Module(0)
