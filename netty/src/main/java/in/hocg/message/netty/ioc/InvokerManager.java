@@ -15,7 +15,7 @@ import java.util.Optional;
  **/
 @UtilityClass
 public final class InvokerManager {
-    private static final Map<String, Invoker> METHODS = PlatformDependent.newConcurrentHashMap();
+    public static final Map<String, Invoker> METHODS = PlatformDependent.newConcurrentHashMap();
     
     
     /**
@@ -54,8 +54,8 @@ public final class InvokerManager {
      * @param command
      * @return
      */
-    private static String genKey(int module, int command) {
-        return String.format("%s-%s", module, command);
+    public static String genKey(int module, int command) {
+        return String.format("%d-%d", module, command);
     }
     
     

@@ -14,7 +14,7 @@ public class Invoker {
     private Object target;
     private Method method;
     
-    static Invoker valueOf(Method method, Object target){
+    public static Invoker valueOf(Method method, Object target){
         Invoker invoker = new Invoker();
         invoker.setTarget(target);
         invoker.setMethod(method);
