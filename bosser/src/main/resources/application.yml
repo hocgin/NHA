@@ -1,4 +1,5 @@
-server.port: 8766
+server:
+  port: 8766
 netty:
   port: 10801
 rocketmq:
@@ -8,3 +9,4 @@ rocketmq:
 logging:
   level:
     in.hocg: debug
+    io.netty: debug

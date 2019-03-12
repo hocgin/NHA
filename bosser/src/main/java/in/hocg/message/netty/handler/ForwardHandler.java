@@ -6,6 +6,7 @@ import in.hocg.message.netty.message.packet.AbstractPacket;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 
@@ -15,17 +16,17 @@ import java.util.Optional;
  *
  * @author hocgin
  */
+@Slf4j
 @ChannelHandler.Sharable
 public class ForwardHandler extends SimpleChannelInboundHandler<AbstractPacket> {
     public static final ForwardHandler INSTANCE = new ForwardHandler();
     
     private ForwardHandler() {
-    
     }
     
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, AbstractPacket msg) throws Exception {
-        
+    protected void channelRead0(ChannelHandlerContext ctx, AbstractPacket msg) {
+        log.debug("分发消息 {} {}", msg.getModule(), msg.getCommand());
         Optional<Invoker> invokerOptional = InvokerManager.getInvoker(msg.getModule(), msg.getCommand());
         invokerOptional.ifPresent(invoker -> invoker.invoke(ctx, msg));
     }

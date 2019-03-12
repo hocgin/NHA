@@ -16,12 +16,11 @@ import io.netty.handler.logging.LoggingHandler;
  */
 public class SocketInitializer extends ChannelInitializer<Channel> {
     @Override
-    protected void initChannel(Channel ch) throws Exception {
-        
+    protected void initChannel(Channel ch) {
         ch.pipeline()
                 .addLast(new LoggingHandler(LogLevel.DEBUG))
                 .addLast("SPLITTER", new Splitter())
-                .addLast("CODEC", new MessageCodec())
+                .addLast("CODEC", MessageCodec.INSTANCE)
                 // 业务处理器
                 .addLast("FORWARD-HANDLER", ForwardHandler.INSTANCE)
         ;

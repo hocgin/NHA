@@ -1,5 +1,7 @@
 package in.hocg.message.netty.client;
 
+import in.hocg.message.bosser.module.message.request.TestRequest;
+import in.hocg.message.netty.message.MessageCodec;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -27,7 +29,7 @@ public class NettyClient {
     
     public static void main(String[] args) {
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
-    
+        
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(workerGroup)
                 .channel(NioSocketChannel.class)
@@ -38,7 +40,9 @@ public class NettyClient {
                     @Override
                     public void initChannel(Channel ch) {
                         ch.pipeline()
-                                .addLast(new LoggingHandler(LogLevel.DEBUG));
+                                .addLast(new LoggingHandler(LogLevel.DEBUG))
+                                .addLast(MessageCodec.INSTANCE)
+                        ;
                     }
                 });
         connect(bootstrap, HOST, PORT, MAX_RETRY);
@@ -65,6 +69,8 @@ public class NettyClient {
     }
     
     private static void consoleWrite(Channel channel) {
-        channel.writeAndFlush("Hello World");
+        TestRequest testRequest = new TestRequest();
+        testRequest.setMessage("Hello World");
+        channel.writeAndFlush(testRequest);
     }
 }

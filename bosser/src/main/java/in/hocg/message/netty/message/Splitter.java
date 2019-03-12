@@ -18,13 +18,13 @@ import lombok.extern.slf4j.Slf4j;
 public class Splitter extends LengthFieldBasedFrameDecoder {
     
     public Splitter() {
-        super(Integer.MAX_VALUE, WordWidth.LENGTH_FIELD_OFFSET, WordWidth.LENGTH_FIELD_LENGTH);
+        super(Integer.MAX_VALUE, WordConstant.Width.LENGTH_FIELD_OFFSET, WordConstant.Width.LENGTH_FIELD_LENGTH);
     }
     
     @Override
     protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
         
-        if (in.getInt(in.readerIndex()) != WordWidth.MAGIC_NUMBER) {
+        if (in.getInt(in.readerIndex()) != WordConstant.Content.MAGIC_NUMBER_CONTENT) {
             Channel channel = ctx.channel();
             channel.close();
             log.warn("屏蔽非本协议的客户端: {}", channel.id().asLongText());

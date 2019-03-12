@@ -22,7 +22,6 @@ public class M1Module {
     @Command(MessageConstant.TEST_REQUEST)
     @RequestMapping
     public void test(ChannelHandlerContext ctx, TestRequest msg) {
-        
         log.debug("Nice {}", msg.getMessage());
     }
 }

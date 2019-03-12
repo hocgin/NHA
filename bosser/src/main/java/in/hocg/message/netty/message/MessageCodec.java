@@ -24,6 +24,10 @@ import java.util.Optional;
 @ChannelHandler.Sharable
 public class MessageCodec extends MessageToMessageCodec<ByteBuf, AbstractPacket> {
     
+    private MessageCodec() {
+    }
+    
+    public final static MessageCodec INSTANCE = new MessageCodec();
     /**
      * 编码
      *
@@ -40,11 +44,11 @@ public class MessageCodec extends MessageToMessageCodec<ByteBuf, AbstractPacket>
         byte[] bytes = defaultSerializerAlgorithm.serializer()
                 .serialize(msg);
         
-        byteBuf.writeInt(WordWidth.MAGIC_NUMBER);
+        byteBuf.writeInt(WordConstant.Content.MAGIC_NUMBER_CONTENT);
         byteBuf.writeByte(msg.getVersion());
         byteBuf.writeByte(defaultSerializerAlgorithm.algorithm());
-        byteBuf.writeByte(msg.getCommand());
         byteBuf.writeByte(msg.getModule());
+        byteBuf.writeByte(msg.getCommand());
         byteBuf.writeInt(bytes.length);
         byteBuf.writeBytes(bytes);
         
@@ -63,10 +67,10 @@ public class MessageCodec extends MessageToMessageCodec<ByteBuf, AbstractPacket>
     protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
         
         // 魔数(4)
-        msg.skipBytes(WordWidth.MAGIC_NUMBER);
+        msg.skipBytes(WordConstant.Width.MAGIC_NUMBER);
         
         // 版本号(1)
-        msg.skipBytes(WordWidth.VERSION);
+        msg.skipBytes(WordConstant.Width.VERSION);
         
         // 序列化算法(1)
         byte serializeAlgorithm = msg.readByte();
