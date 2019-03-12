@@ -5,10 +5,9 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by hocgin on 2019/3/2.
@@ -16,8 +15,9 @@ import lombok.RequiredArgsConstructor;
  *
  * @author hocgin
  */
+@Slf4j
 @RequiredArgsConstructor
-public final class DefaultServer implements Server {
+public final class DefaultNettyServer implements NettyServer {
     @NonNull
     private int port;
     private ServerBootstrap bootstrap;
@@ -26,23 +26,17 @@ public final class DefaultServer implements Server {
     public void start() {
         NioEventLoopGroup boss = new NioEventLoopGroup();
         NioEventLoopGroup work = new NioEventLoopGroup();
-        try {
-            bootstrap = new ServerBootstrap();
-            bootstrap.group(boss, work)
-                    .channel(NioServerSocketChannel.class)
-                    .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new SocketInitializer())
-                    .childOption(ChannelOption.SO_KEEPALIVE, true)
-                    .bind(port)
-                    .channel()
-                    .closeFuture()
-                    .sync();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            boss.shutdownGracefully();
-            work.shutdownGracefully();
-        }
+        bootstrap = new ServerBootstrap();
+        bootstrap.group(boss, work)
+                .channel(NioServerSocketChannel.class)
+                .option(ChannelOption.SO_BACKLOG, 1024)
+                .childOption(ChannelOption.SO_KEEPALIVE, true)
+                .childOption(ChannelOption.TCP_NODELAY, true)
+                .childHandler(new SocketInitializer())
+                .bind(port)
+                .addListener(future -> {
+                    log.debug("端口[{}]绑定{}", port, future.isSuccess() ? "成功" : "失败");
+                });
     }
     
     @Override

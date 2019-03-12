@@ -25,6 +25,7 @@ public class ForwardHandler extends SimpleChannelInboundHandler<AbstractPacket> 
     
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, AbstractPacket msg) throws Exception {
+        
         Optional<Invoker> invokerOptional = InvokerManager.getInvoker(msg.getModule(), msg.getCommand());
         invokerOptional.ifPresent(invoker -> invoker.invoke(ctx, msg));
     }

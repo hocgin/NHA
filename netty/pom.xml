@@ -12,7 +12,7 @@
 
     <groupId>in.hocg.message</groupId>
     <artifactId>netty</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <properties>
         <fastjson.version>1.2.56</fastjson.version>
@@ -40,11 +40,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
         </dependency>
 
         <!-- 环境 -->

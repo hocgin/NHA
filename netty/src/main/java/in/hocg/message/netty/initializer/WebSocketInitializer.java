@@ -1,6 +1,6 @@
 package in.hocg.message.netty.initializer;
 
-import in.hocg.message.netty.handler.TextWebSocketFrameHandler;
+import in.hocg.message.netty.handler.ForwardHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
@@ -41,7 +41,7 @@ public class WebSocketInitializer extends ChannelInitializer<SocketChannel> {
                 // Socket 协议处理
                 .addLast("webSocketServerProtocolHandler", new WebSocketServerProtocolHandler("/ws"))
                 // 业务处理器
-                .addLast("HANDLER", new TextWebSocketFrameHandler())
+                .addLast("HANDLER", ForwardHandler.INSTANCE)
         ;
     }
 }

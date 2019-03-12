@@ -1,8 +1,10 @@
 package in.hocg.message.netty.message;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by hocgin on 2019/3/2.
@@ -12,6 +14,7 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
  *
  * @author hocgin
  */
+@Slf4j
 public class Splitter extends LengthFieldBasedFrameDecoder {
     
     public Splitter() {
@@ -21,9 +24,10 @@ public class Splitter extends LengthFieldBasedFrameDecoder {
     @Override
     protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
         
-        // 屏蔽非本协议的客户端
         if (in.getInt(in.readerIndex()) != WordWidth.MAGIC_NUMBER) {
-            ctx.channel().close();
+            Channel channel = ctx.channel();
+            channel.close();
+            log.warn("屏蔽非本协议的客户端: {}", channel.id().asLongText());
             return null;
         }
         

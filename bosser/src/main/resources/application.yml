@@ -1,5 +1,10 @@
 server.port: 8766
+netty:
+  port: 10801
 rocketmq:
   name-server: 34.80.49.80:9876
   producer:
     group: TestProducerGroup
+logging:
+  level:
+    in.hocg: debug

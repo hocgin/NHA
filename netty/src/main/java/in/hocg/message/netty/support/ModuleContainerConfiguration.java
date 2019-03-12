@@ -1,5 +1,7 @@
 package in.hocg.message.netty.support;
 
+import in.hocg.message.netty.DefaultNettyServer;
+import in.hocg.message.netty.NettyServer;
 import in.hocg.message.netty.ioc.Command;
 import in.hocg.message.netty.ioc.Invoker;
 import in.hocg.message.netty.ioc.InvokerManager;
@@ -7,9 +9,12 @@ import in.hocg.message.netty.ioc.Module;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.SmartInitializingSingleton;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.lang.reflect.Method;
@@ -21,9 +26,11 @@ import java.util.Objects;
  */
 @Slf4j
 @Configuration
+@EnableConfigurationProperties(NettyProperties.class)
 public class ModuleContainerConfiguration implements ApplicationContextAware, SmartInitializingSingleton {
     
     private ConfigurableApplicationContext applicationContext;
+    
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = (ConfigurableApplicationContext) applicationContext;
@@ -53,5 +60,13 @@ public class ModuleContainerConfiguration implements ApplicationContextAware, Sm
             log.debug("类名: {}, 函数: {} => {}", invoker.getTarget().getClass(), invoker.getMethod().getName(), key);
             InvokerManager.METHODS.put(key, invoker);
         }
+    }
+    
+    @Bean
+    @ConditionalOnMissingBean(NettyServer.class)
+    public NettyServer server(NettyProperties nettyProperties) {
+        NettyServer server = new DefaultNettyServer(nettyProperties.getPort());
+        server.start();
+        return server;
     }
 }

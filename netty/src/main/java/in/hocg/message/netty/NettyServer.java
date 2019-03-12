@@ -6,7 +6,7 @@ package in.hocg.message.netty;
  *
  * @author hocgin
  */
-public interface Server {
+public interface NettyServer {
     /**
      * 启动
      */

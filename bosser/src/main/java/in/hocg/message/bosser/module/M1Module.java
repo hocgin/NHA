@@ -7,6 +7,7 @@ import in.hocg.message.netty.ioc.Command;
 import in.hocg.message.netty.ioc.Module;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by hocgin on 2019/3/6.
@@ -19,7 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 public class M1Module {
     
     @Command(MessageConstant.TEST_REQUEST)
+    @RequestMapping
     public void test(ChannelHandlerContext ctx, TestRequest msg) {
+        
         log.debug("Nice {}", msg.getMessage());
     }
 }

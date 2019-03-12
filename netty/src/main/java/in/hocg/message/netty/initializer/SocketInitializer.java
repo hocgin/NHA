@@ -5,6 +5,8 @@ import in.hocg.message.netty.message.MessageCodec;
 import in.hocg.message.netty.message.Splitter;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 /**
  * Created by hocgin on 2019/3/5.
@@ -17,6 +19,7 @@ public class SocketInitializer extends ChannelInitializer<Channel> {
     protected void initChannel(Channel ch) throws Exception {
         
         ch.pipeline()
+                .addLast(new LoggingHandler(LogLevel.DEBUG))
                 .addLast("SPLITTER", new Splitter())
                 .addLast("CODEC", new MessageCodec())
                 // 业务处理器
