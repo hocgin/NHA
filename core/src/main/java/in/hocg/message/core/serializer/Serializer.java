@@ -1,4 +1,4 @@
-package in.hocg.message.bosser.netty.serializer;
+package in.hocg.message.core.serializer;
 
 /**
  * Created by hocgin on 2019/3/2.

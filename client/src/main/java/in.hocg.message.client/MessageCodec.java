@@ -1,13 +1,9 @@
-package in.hocg.message.bosser.netty.client;
+package in.hocg.message.client;
 
 import in.hocg.message.body.packet.AbstractPacket;
-import in.hocg.message.bosser.netty.message.Packet;
-import in.hocg.message.bosser.netty.message.WordConstant;
-import in.hocg.message.bosser.netty.serializer.SerializerAlgorithm;
+import in.hocg.message.core.serializer.SerializerAlgorithm;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
-import io.netty.buffer.ByteBufUtil;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
 
@@ -20,7 +16,6 @@ import java.util.List;
  *
  * @author hocgin
  */
-@ChannelHandler.Sharable
 public class MessageCodec extends MessageToMessageCodec<ByteBuf, AbstractPacket> {
     
     private MessageCodec() {
@@ -64,22 +59,7 @@ public class MessageCodec extends MessageToMessageCodec<ByteBuf, AbstractPacket>
      */
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
-    
-        // 魔数(4)
-        msg.skipBytes(WordConstant.Width.MAGIC_NUMBER);
-    
-        // 版本号(1)
-        byte version = msg.readByte();
-    
-        // 序列化算法(1)
-        msg.skipBytes(WordConstant.Width.SERIALIZER_ALGORITHM);
-    
-        // 模块(1)
-        byte module = msg.readByte();
-    
-        // 指令(1)
-        byte command = msg.readByte();
-    
-        out.add(new Packet(version, module, command, ByteBufUtil.getBytes(msg)));
+        // 解码先不做处理
+        System.out.println("解码先不做处理");
     }
 }

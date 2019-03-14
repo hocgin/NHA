@@ -1,4 +1,4 @@
-package in.hocg.message.bosser.netty.client;
+package in.hocg.message.client;
 
 import in.hocg.message.body.request.TestRequest;
 import io.netty.bootstrap.Bootstrap;
@@ -67,9 +67,13 @@ public class NettyClient {
         });
     }
     
-    private static void consoleWrite(Channel channel) {
-        TestRequest testRequest = new TestRequest();
-        testRequest.setMessage("Hello World");
-        channel.writeAndFlush(testRequest);
+    private static void consoleWrite(Channel channel) throws InterruptedException {
+    
+        for (; ; ) {
+            TestRequest testRequest = new TestRequest();
+            testRequest.setMessage("Hello World");
+            channel.writeAndFlush(testRequest);
+            Thread.sleep(5000);
+        }
     }
 }

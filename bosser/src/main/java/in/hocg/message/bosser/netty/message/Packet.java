@@ -15,7 +15,11 @@ public class Packet implements Serializable {
     /**
      * 协议版本
      */
-    private byte version = 1;
+    private byte version;
+    /**
+     * 签名方式
+     */
+    private byte algorithm;
     /**
      * 模块
      */

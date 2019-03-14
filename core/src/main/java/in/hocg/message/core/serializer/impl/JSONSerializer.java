@@ -1,9 +1,9 @@
-package in.hocg.message.bosser.netty.serializer.impl;
+package in.hocg.message.core.serializer.impl;
 
 
 import com.alibaba.fastjson.JSON;
-import in.hocg.message.bosser.netty.serializer.Serializer;
-import in.hocg.message.bosser.netty.serializer.SerializerAlgorithm;
+import in.hocg.message.core.serializer.Serializer;
+import in.hocg.message.core.serializer.SerializerAlgorithm;
 
 /**
  * Created by hocgin on 2019/3/2.

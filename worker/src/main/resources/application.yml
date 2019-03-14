@@ -1,3 +1,6 @@
 server.port: 8765
 rocketmq:
   name-server: 34.80.49.80:9876
+logging:
+  level:
+    in.hocg: debug

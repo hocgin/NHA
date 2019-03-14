@@ -1,6 +1,6 @@
-package in.hocg.message.bosser.netty.serializer;
+package in.hocg.message.core.serializer;
 
-import in.hocg.message.bosser.netty.serializer.impl.JSONSerializer;
+import in.hocg.message.core.serializer.impl.JSONSerializer;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
