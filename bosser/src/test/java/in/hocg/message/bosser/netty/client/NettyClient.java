@@ -1,7 +1,6 @@
 package in.hocg.message.bosser.netty.client;
 
 import in.hocg.message.body.request.TestRequest;
-import in.hocg.message.bosser.netty.message.MessageCodec;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;

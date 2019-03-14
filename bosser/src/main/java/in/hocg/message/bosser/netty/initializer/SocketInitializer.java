@@ -1,12 +1,12 @@
 package in.hocg.message.bosser.netty.initializer;
 
-import in.hocg.message.bosser.netty.handler.ForwardMQHandler;
+import in.hocg.message.bosser.netty.handler.ForwardHandler;
+import in.hocg.message.bosser.netty.message.MessageDecode;
 import in.hocg.message.bosser.netty.message.Splitter;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by hocgin on 2019/3/5.
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
  *
  * @author hocgin
  */
-@Component
 public class SocketInitializer extends ChannelInitializer<Channel> {
     
     @Override
@@ -22,9 +21,9 @@ public class SocketInitializer extends ChannelInitializer<Channel> {
         ch.pipeline()
                 .addLast(new LoggingHandler(LogLevel.DEBUG))
                 .addLast("SPLITTER", new Splitter())
-//                .addLast("CODEC", MessageCodec.INSTANCE)
+                .addLast("MESSAGE-DECODE", MessageDecode.INSTANCE)
                 // 业务处理器
-                .addLast("FORWARD-HANDLER", ForwardMQHandler.INSTANCE)
+                .addLast("FORWARD-HANDLER", ForwardHandler.INSTANCE)
         ;
     }
 }

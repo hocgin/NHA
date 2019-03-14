@@ -1,18 +1,17 @@
-package in.hocg.message.bosser.netty.message;
+package in.hocg.message.bosser.netty.client;
 
-import in.hocg.message.bosser.netty.ioc.Invoker;
-import in.hocg.message.bosser.netty.ioc.InvokerManager;
 import in.hocg.message.body.packet.AbstractPacket;
-import in.hocg.message.bosser.netty.serializer.Serializer;
+import in.hocg.message.bosser.netty.message.Packet;
+import in.hocg.message.bosser.netty.message.WordConstant;
 import in.hocg.message.bosser.netty.serializer.SerializerAlgorithm;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
+import io.netty.buffer.ByteBufUtil;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by hocgin on 2019/3/5.
@@ -65,44 +64,22 @@ public class MessageCodec extends MessageToMessageCodec<ByteBuf, AbstractPacket>
      */
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
-        
+    
         // 魔数(4)
         msg.skipBytes(WordConstant.Width.MAGIC_NUMBER);
-        
+    
         // 版本号(1)
-        msg.skipBytes(WordConstant.Width.VERSION);
-        
+        byte version = msg.readByte();
+    
         // 序列化算法(1)
-        byte serializeAlgorithm = msg.readByte();
-        
+        msg.skipBytes(WordConstant.Width.SERIALIZER_ALGORITHM);
+    
         // 模块(1)
         byte module = msg.readByte();
-        
+    
         // 指令(1)
         byte command = msg.readByte();
-        
-        // 数据长度(4)
-        int length = msg.readInt();
-        
-        // 数据(n)
-        byte[] content = new byte[length];
-        msg.readBytes(content);
-        
-        Optional<Invoker> invokerOptional = InvokerManager.getInvoker(module, command);
-        Optional<Serializer> serializer = SerializerAlgorithm.getSerializer(serializeAlgorithm);
-        
-        AbstractPacket packet = null;
-        if (invokerOptional.isPresent() && serializer.isPresent()) {
-            Class<?>[] parameterTypes = invokerOptional.get()
-                    .getMethod()
-                    .getParameterTypes();
-            Class<?> parameterType = AbstractPacket.class;
-            if (parameterTypes.length > 1) {
-                parameterType = parameterTypes[1];
-            }
-            packet = (AbstractPacket) serializer.get().deserialize(parameterType, content);
-        }
-        
-        out.add(packet);
+    
+        out.add(new Packet(version, module, command, ByteBufUtil.getBytes(msg)));
     }
 }

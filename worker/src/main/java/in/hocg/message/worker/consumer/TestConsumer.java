@@ -16,8 +16,9 @@ import org.springframework.stereotype.Service;
 @RocketMQMessageListener(topic = MQConstant.Topic.TEST_TOPIC, consumerGroup = MQConstant.Group.TEST_CONSUMER)
 public class TestConsumer implements RocketMQListener<byte[]> {
     @Override
-    public void onMessage(byte[] bytes) {
+    public void onMessage(byte[] data) {
         ByteBuf byteBuf = ByteBufAllocator.DEFAULT.ioBuffer();
-        byteBuf.writeBytes(bytes);
+        byteBuf.writeBytes(data);
+        log.debug("接收到消息: {}", data);
     }
 }

@@ -30,6 +30,7 @@ public class Splitter extends LengthFieldBasedFrameDecoder {
             log.warn("屏蔽非本协议的客户端: {}", channel.id().asLongText());
             return null;
         }
+        log.debug("正常放行");
         
         return super.decode(ctx, in);
     }
