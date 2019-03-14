@@ -29,16 +29,16 @@ import java.util.Objects;
 @EnableConfigurationProperties(NettyProperties.class)
 public class ModuleContainerConfiguration implements ApplicationContextAware, SmartInitializingSingleton {
     
-    private ConfigurableApplicationContext applicationContext;
+    public static ConfigurableApplicationContext APPLICATION;
     
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = (ConfigurableApplicationContext) applicationContext;
+        APPLICATION = (ConfigurableApplicationContext) applicationContext;
     }
     
     @Override
     public void afterSingletonsInstantiated() {
-        Map<String, Object> beans = this.applicationContext.getBeansWithAnnotation(Module.class);
+        Map<String, Object> beans = APPLICATION.getBeansWithAnnotation(Module.class);
         beans.forEach((k, v)->{
             Class<?> clazz = v.getClass();
             Module module = clazz.getAnnotation(Module.class);

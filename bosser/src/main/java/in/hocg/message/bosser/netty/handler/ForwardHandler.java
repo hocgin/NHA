@@ -2,7 +2,7 @@ package in.hocg.message.bosser.netty.handler;
 
 import in.hocg.message.bosser.netty.ioc.Invoker;
 import in.hocg.message.bosser.netty.ioc.InvokerManager;
-import in.hocg.message.bosser.netty.message.packet.AbstractPacket;
+import in.hocg.message.body.packet.AbstractPacket;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

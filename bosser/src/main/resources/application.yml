@@ -10,3 +10,4 @@ logging:
   level:
     in.hocg: debug
     io.netty: debug
+    org.apache.rocketmq: debug

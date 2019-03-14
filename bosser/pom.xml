@@ -18,6 +18,7 @@
         <java.version>1.8</java.version>
         <fastjson.version>1.2.56</fastjson.version>
         <guava.version>27.0.1-jre</guava.version>
+        <rocketmq-spring-boot-starter-version>2.0.1</rocketmq-spring-boot-starter-version>
     </properties>
 
     <dependencies>
@@ -25,6 +26,11 @@
             <groupId>in.hocg.message</groupId>
             <artifactId>body</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <version>${rocketmq-spring-boot-starter-version}</version>
         </dependency>
 
         <dependency>

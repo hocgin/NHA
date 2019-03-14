@@ -2,7 +2,7 @@ package in.hocg.message.bosser.netty.message;
 
 import in.hocg.message.bosser.netty.ioc.Invoker;
 import in.hocg.message.bosser.netty.ioc.InvokerManager;
-import in.hocg.message.bosser.netty.message.packet.AbstractPacket;
+import in.hocg.message.body.packet.AbstractPacket;
 import in.hocg.message.bosser.netty.serializer.Serializer;
 import in.hocg.message.bosser.netty.serializer.SerializerAlgorithm;
 import io.netty.buffer.ByteBuf;

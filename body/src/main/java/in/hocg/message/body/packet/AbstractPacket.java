@@ -1,4 +1,4 @@
-package in.hocg.message.bosser.netty.message.packet;
+package in.hocg.message.body.packet;
 
 import lombok.Data;
 

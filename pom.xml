@@ -6,12 +6,14 @@
 
     <groupId>in.hocg.message</groupId>
     <artifactId>message-all</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
         <module>body</module>
         <module>bosser</module>
         <module>worker</module>
+        <module>client</module>
     </modules>
 
     <dependencyManagement>
