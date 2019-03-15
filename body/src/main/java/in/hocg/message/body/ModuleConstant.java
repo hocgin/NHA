@@ -7,5 +7,10 @@ package in.hocg.message.body;
  * @author hocgin
  */
 public interface ModuleConstant {
+    /**
+     * 默认模块
+     */
+    byte DEFAULT_MODULE = 0;
+    
     byte MODULE_1 = 1;
 }

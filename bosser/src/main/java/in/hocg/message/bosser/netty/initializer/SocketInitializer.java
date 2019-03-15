@@ -21,11 +21,11 @@ public class SocketInitializer extends ChannelInitializer<Channel> {
     protected void initChannel(Channel ch) {
         ch.pipeline()
                 .addLast(new LoggingHandler(LogLevel.DEBUG))
-                .addLast("SPLITTER", new Splitter())
                 .addLast("IDLE-STATE-CHECK", new IdleStateCheck())
+                .addLast("SPLITTER", new Splitter())
                 .addLast("MESSAGE-DECODE", new MessageDecoder())
                 // 业务处理器
-                .addLast("FORWARD-HANDLER", new ForwardHandler())
+                .addLast("FORWARD-HANDLER", ForwardHandler.INSTANCE)
         ;
     }
 }

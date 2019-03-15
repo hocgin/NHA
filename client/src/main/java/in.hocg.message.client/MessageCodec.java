@@ -4,6 +4,7 @@ import in.hocg.message.body.response.TestResponse;
 import in.hocg.message.core.protocol.AbstractPacket;
 import in.hocg.message.core.protocol.Codec;
 import in.hocg.message.core.protocol.Packet;
+import in.hocg.message.core.protocol.WordConstant;
 import in.hocg.message.core.serializer.SerializerAlgorithm;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;

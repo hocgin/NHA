@@ -37,7 +37,7 @@ public class MessageConsumer implements RocketMQListener<MessageExt> {
         byte[] body = JSON.parseObject(bodyStr, byte[].class);
         ByteBuf byteBuf = ByteBufAllocator.DEFAULT.ioBuffer();
         byteBuf.writeBytes(body);
-        channel.writeAndFlush(byteBuf).addListener(future -> log.debug("Listener:: {}", future));
+        channel.writeAndFlush(byteBuf);
         log.debug("\n -> 消息体: {} \n -> 接收者: {}", body, destination);
     }
 }

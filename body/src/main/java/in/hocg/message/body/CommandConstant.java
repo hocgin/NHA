@@ -7,6 +7,12 @@ package in.hocg.message.body;
  * @author hocgin
  */
 public interface CommandConstant {
+    /**
+     * 心跳请求
+     */
+    byte HEART_BEAT_REQUEST = 0;
+    
+    
     byte TEST_REQUEST = 1;
     byte TEST_RESPONSE = 2;
 
