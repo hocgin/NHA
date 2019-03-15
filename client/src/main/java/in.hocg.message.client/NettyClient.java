@@ -1,6 +1,7 @@
 package in.hocg.message.client;
 
 import in.hocg.message.body.request.TestRequest;
+import in.hocg.message.core.protocol.Splitter;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -40,6 +41,7 @@ public class NettyClient {
                     public void initChannel(Channel ch) {
                         ch.pipeline()
                                 .addLast(new LoggingHandler(LogLevel.DEBUG))
+                                .addLast(new Splitter())
                                 .addLast(new MessageCodec())
                         ;
                     }

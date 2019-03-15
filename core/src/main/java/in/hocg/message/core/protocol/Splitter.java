@@ -1,6 +1,5 @@
-package in.hocg.message.bosser.netty.message;
+package in.hocg.message.core.protocol;
 
-import in.hocg.message.core.protocol.WordConstant;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -12,7 +11,8 @@ import lombok.extern.slf4j.Slf4j;
  * email: hocgin@gmail.com
  *
  * 拆包器
- *
+ * - 拒绝非本协议
+ * - 解决粘包问题
  * @author hocgin
  */
 @Slf4j
@@ -28,7 +28,6 @@ public class Splitter extends LengthFieldBasedFrameDecoder {
         if (in.getInt(in.readerIndex()) != WordConstant.Content.MAGIC_NUMBER_CONTENT) {
             Channel channel = ctx.channel();
             channel.close();
-            log.warn("屏蔽非本协议的客户端: {}", channel.id().asLongText());
             return null;
         }
         log.debug("正常放行");
