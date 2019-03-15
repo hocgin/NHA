@@ -5,7 +5,7 @@ netty:
 rocketmq:
   name-server: 34.80.49.80:9876
   producer:
-    group: TestProducerGroup
+    group: BOSSER_PRODUCER_GROUP
 logging:
   level:
     in.hocg: debug

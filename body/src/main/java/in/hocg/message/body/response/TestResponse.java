@@ -1,8 +1,8 @@
 package in.hocg.message.body.response;
 
-import in.hocg.message.body.MessageConstant;
+import in.hocg.message.body.CommandConstant;
 import in.hocg.message.body.ModuleConstant;
-import in.hocg.message.body.packet.AbstractPacket;
+import in.hocg.message.core.protocol.AbstractPacket;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,7 +22,7 @@ public class TestResponse extends AbstractPacket {
     
     @Override
     public byte getCommand() {
-        return MessageConstant.TEST_RESPONSE;
+        return CommandConstant.TEST_RESPONSE;
     }
     
     @Override

@@ -1,5 +1,6 @@
 package in.hocg.message.bosser.netty.message;
 
+import in.hocg.message.core.protocol.WordConstant;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;

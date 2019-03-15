@@ -1,4 +1,4 @@
-package in.hocg.message.bosser.netty.message;
+package in.hocg.message.core.protocol;
 
 /**
  * Created by hocgin on 2019/3/5.

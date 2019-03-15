@@ -6,7 +6,7 @@ package in.hocg.message.body;
  *
  * @author hocgin
  */
-public interface MessageConstant {
+public interface CommandConstant {
     byte TEST_REQUEST = 1;
     byte TEST_RESPONSE = 2;
 

@@ -40,7 +40,7 @@ public class NettyClient {
                     public void initChannel(Channel ch) {
                         ch.pipeline()
                                 .addLast(new LoggingHandler(LogLevel.DEBUG))
-                                .addLast(MessageCodec.INSTANCE)
+                                .addLast(new MessageCodec())
                         ;
                     }
                 });
@@ -69,11 +69,19 @@ public class NettyClient {
     
     private static void consoleWrite(Channel channel) throws InterruptedException {
     
-        for (; ; ) {
-            TestRequest testRequest = new TestRequest();
-            testRequest.setMessage("Hello World");
-            channel.writeAndFlush(testRequest);
-            Thread.sleep(5000);
-        }
+        new Thread(()->{
+            for (; ; ) {
+                TestRequest testRequest = new TestRequest();
+                String body = "Hello World";
+                testRequest.setMessage(body);
+                channel.writeAndFlush(testRequest);
+                System.out.println(String.format("正在发送: %s", testRequest));
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }

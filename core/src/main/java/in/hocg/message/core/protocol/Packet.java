@@ -1,7 +1,8 @@
-package in.hocg.message.bosser.netty.message;
+package in.hocg.message.core.protocol;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -9,6 +10,7 @@ import java.io.Serializable;
  * @author hocgin
  */
 @Data
+@ToString
 @AllArgsConstructor
 public class Packet implements Serializable {
     

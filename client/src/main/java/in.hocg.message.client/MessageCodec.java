@@ -1,11 +1,15 @@
 package in.hocg.message.client;
 
-import in.hocg.message.body.packet.AbstractPacket;
+import in.hocg.message.body.response.TestResponse;
+import in.hocg.message.core.protocol.AbstractPacket;
+import in.hocg.message.core.protocol.Codec;
+import in.hocg.message.core.protocol.Packet;
 import in.hocg.message.core.serializer.SerializerAlgorithm;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -16,22 +20,18 @@ import java.util.List;
  *
  * @author hocgin
  */
+@Slf4j
 public class MessageCodec extends MessageToMessageCodec<ByteBuf, AbstractPacket> {
     
-    private MessageCodec() {
-    }
-    
-    public final static MessageCodec INSTANCE = new MessageCodec();
     /**
      * 编码
      *
      * @param ctx
      * @param msg
      * @param out
-     * @throws Exception
      */
     @Override
-    protected void encode(ChannelHandlerContext ctx, AbstractPacket msg, List<Object> out) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, AbstractPacket msg, List<Object> out) {
         SerializerAlgorithm defaultSerializerAlgorithm = SerializerAlgorithm.JSON;
         
         ByteBuf byteBuf = ByteBufAllocator.DEFAULT.ioBuffer();
@@ -55,11 +55,17 @@ public class MessageCodec extends MessageToMessageCodec<ByteBuf, AbstractPacket>
      * @param ctx
      * @param msg
      * @param out
-     * @throws Exception
      */
     @Override
-    protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
-        // 解码先不做处理
-        System.out.println("解码先不做处理");
+    protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) {
+        Packet packet = Codec.decode(msg);
+        byte algorithm = packet.getAlgorithm();
+        SerializerAlgorithm.getSerializer(algorithm)
+                .ifPresent(serializer -> {
+                    // todo 此处需自动适配转换的类型
+                    TestResponse response = serializer.deserialize(TestResponse.class, packet.getData());
+                    out.add(response);
+                    log.debug("解码: {}, 响应内容: {}", packet, response);
+                });
     }
 }

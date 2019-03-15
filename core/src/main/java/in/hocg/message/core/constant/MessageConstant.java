@@ -7,6 +7,9 @@ package in.hocg.message.core.constant;
  * @author hocgin
  */
 public interface MessageConstant {
-    String TOPIC = "test-g-topic";
-    String CONSUMER_GROUP = "TestConsumerGroup";
+    String WORKER_TOPIC = "WORKER_TOPIC";
+    String BOSSER_TOPIC = "BOSSER_TOPIC";
+    
+    String WORKER_CONSUMER_GROUP = "WORKER_CONSUMER_GROUP";
+    String BOSSER_CONSUMER_GROUP = "BOSSER_CONSUMER_GROUP";
 }

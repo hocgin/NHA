@@ -2,6 +2,7 @@ package in.hocg.message.bosser.netty.support;
 
 import in.hocg.message.bosser.netty.DefaultNettyServer;
 import in.hocg.message.bosser.netty.NettyServer;
+import in.hocg.message.bosser.netty.session.SessionManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

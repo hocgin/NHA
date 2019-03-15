@@ -1,7 +1,7 @@
 package in.hocg.message.bosser.netty.initializer;
 
 import in.hocg.message.bosser.netty.handler.ForwardHandler;
-import in.hocg.message.bosser.netty.message.MessageDecode;
+import in.hocg.message.bosser.netty.message.MessageDecoder;
 import in.hocg.message.bosser.netty.message.Splitter;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -21,9 +21,9 @@ public class SocketInitializer extends ChannelInitializer<Channel> {
         ch.pipeline()
                 .addLast(new LoggingHandler(LogLevel.DEBUG))
                 .addLast("SPLITTER", new Splitter())
-                .addLast("MESSAGE-DECODE", MessageDecode.INSTANCE)
+                .addLast("MESSAGE-DECODE", new MessageDecoder())
                 // 业务处理器
-                .addLast("FORWARD-HANDLER", ForwardHandler.INSTANCE)
+                .addLast("FORWARD-HANDLER", new ForwardHandler())
         ;
     }
 }

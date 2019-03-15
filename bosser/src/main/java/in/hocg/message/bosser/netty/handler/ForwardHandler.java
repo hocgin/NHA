@@ -1,9 +1,11 @@
 package in.hocg.message.bosser.netty.handler;
 
-import in.hocg.message.bosser.netty.message.Packet;
+import in.hocg.message.core.protocol.Packet;
+import in.hocg.message.bosser.netty.session.SessionManager;
 import in.hocg.message.bosser.netty.support.NettyStarterConfiguration;
 import in.hocg.message.core.constant.MessageConstant;
 import in.hocg.message.core.constant.MessageHeader;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -36,8 +38,8 @@ public class ForwardHandler extends SimpleChannelInboundHandler<Packet> {
                 .setHeader(MessageHeader.MODULE, module)
                 .build();
     
-        mqTemplate.sendOneWay(MessageConstant.TOPIC, message);
-        log.debug("发送消息至MQ, Destination: {}, data: {}", MessageConstant.TOPIC, data);
+        mqTemplate.sendOneWay(MessageConstant.WORKER_TOPIC, message);
+        log.debug("发送消息至MQ, Destination: {}\n data: {} \n dataString: {}", MessageConstant.WORKER_TOPIC, data, new String(data));
     }
     
     @Override
@@ -55,6 +57,9 @@ public class ForwardHandler extends SimpleChannelInboundHandler<Packet> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("channel 准备就绪：channelActive()");
+        Channel channel = ctx.channel();
+        channel.writeAndFlush("Hi Login Ok");
+        SessionManager.add(channel.id().asLongText(), channel);
         super.channelActive(ctx);
     }
     
@@ -74,6 +79,8 @@ public class ForwardHandler extends SimpleChannelInboundHandler<Packet> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("channel 被关闭：channelInactive()");
+        Channel channel = ctx.channel();
+        SessionManager.remove(channel.id().asLongText());
         super.channelInactive(ctx);
     }
     

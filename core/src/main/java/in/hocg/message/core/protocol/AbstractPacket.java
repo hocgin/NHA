@@ -1,4 +1,4 @@
-package in.hocg.message.body.packet;
+package in.hocg.message.core.protocol;
 
 import lombok.Data;
 

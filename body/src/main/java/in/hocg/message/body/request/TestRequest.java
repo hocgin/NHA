@@ -1,10 +1,11 @@
 package in.hocg.message.body.request;
 
-import in.hocg.message.body.MessageConstant;
+import in.hocg.message.body.CommandConstant;
 import in.hocg.message.body.ModuleConstant;
-import in.hocg.message.body.packet.AbstractPacket;
+import in.hocg.message.core.protocol.AbstractPacket;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * Created by hocgin on 2019/3/2.
@@ -16,13 +17,14 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@ToString
 public class TestRequest extends AbstractPacket {
     
     private String message;
     
     @Override
     public byte getCommand() {
-        return MessageConstant.TEST_REQUEST;
+        return CommandConstant.TEST_REQUEST;
     }
     
     @Override

@@ -1,5 +1,7 @@
 package in.hocg.message.bosser.netty.message;
 
+import in.hocg.message.core.protocol.Packet;
+import in.hocg.message.core.protocol.WordConstant;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -11,11 +13,11 @@ import java.util.List;
  *
  * @author hocgin
  */
-public class MessageDecode extends ByteToMessageDecoder {
+public class MessageDecoder extends ByteToMessageDecoder {
     
-    public final static MessageDecode INSTANCE = new MessageDecode();
+    public final static MessageDecoder INSTANCE = new MessageDecoder();
 
-//    private MessageDecode() {
+//    private MessageDecoder() {
 //    }
     
     @Override
