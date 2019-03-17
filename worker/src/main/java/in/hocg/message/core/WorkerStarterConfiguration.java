@@ -22,7 +22,7 @@ import java.util.Objects;
 @Slf4j
 @Configuration
 public class WorkerStarterConfiguration implements ApplicationContextAware, SmartInitializingSingleton {
-    public static ConfigurableApplicationContext APPLICATION;
+    private static ConfigurableApplicationContext APPLICATION;
     
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

@@ -1,15 +1,13 @@
 package in.hocg.message.bosser.netty.initializer;
 
 import in.hocg.message.bosser.netty.handler.ForwardHandler;
+import in.hocg.message.core.protocol.IdleStateCheck;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
-import io.netty.handler.timeout.IdleStateHandler;
-
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -23,12 +21,8 @@ public class WebSocketInitializer extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel ch) throws Exception {
         
         ch.pipeline()
-                /*
-                  心跳检测
-                  - 500秒内未读取到客户端数据,会触发读超时
-                  - 1秒内未向客户端发送数据,会触发写超时
-                 */
-                .addLast(new IdleStateHandler(5, 1, 5, TimeUnit.SECONDS))
+                // 心跳检测
+                .addLast(new IdleStateCheck())
                 // HTTP协议,编解码
                 .addLast("http-codec", new HttpServerCodec())
                 /*

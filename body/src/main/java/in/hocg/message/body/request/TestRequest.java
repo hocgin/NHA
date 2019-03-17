@@ -1,7 +1,6 @@
 package in.hocg.message.body.request;
 
-import in.hocg.message.body.CommandConstant;
-import in.hocg.message.body.ModuleConstant;
+import in.hocg.message.body.constant.TestModule;
 import in.hocg.message.core.protocol.AbstractPacket;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,11 +23,11 @@ public class TestRequest extends AbstractPacket {
     
     @Override
     public byte getCommand() {
-        return CommandConstant.TEST_REQUEST;
+        return TestModule.TEST_REQUEST;
     }
     
     @Override
     public byte getModule() {
-        return ModuleConstant.MODULE_1;
+        return TestModule.MODULE_VALUE;
     }
 }
