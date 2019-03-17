@@ -3,7 +3,7 @@ server:
 netty:
   port: 10801
 rocketmq:
-  name-server: 34.80.49.80:9876
+  name-server: mq.hocgin.dev:9876
   producer:
     group: BOSSER_PRODUCER_GROUP
 logging:

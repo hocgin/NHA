@@ -7,21 +7,19 @@
         <groupId>in.hocg.message</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>client</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <name>message-client ${project.version}</name>
 
     <dependencies>
         <dependency>
-            <groupId>in.hocg.message</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>body</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>in.hocg.message</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>core</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <!--日志 开始-->
         <dependency>

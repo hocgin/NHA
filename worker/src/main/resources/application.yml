@@ -1,6 +1,6 @@
 server.port: 8765
 rocketmq:
-  name-server: 34.80.49.80:9876
+  name-server: mq.hocgin.dev:9876
   producer:
     group: WORKER_PRODUCER_GROUP
 logging:
